@@ -27,9 +27,7 @@ export default function SubmitAsset() {
     location: "",
 
     assetForm: "",
-    huidNumbers: [
-  { value: "", status: "idle" }
-],
+    huidNumbers: [{ value: "", status: "idle" }],
   });
 
   const inputStyle =
@@ -38,7 +36,8 @@ export default function SubmitAsset() {
   return (
     <div className="relative min-h-[100dvh] overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white px-4">
       {/* Back to Dashboard */}
-      <div className="absolute top-6 left-6 z-20">
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20">
+        {" "}
         <button
           onClick={() => router.push("/dashboard")}
           className="text-sm px-4 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur hover:bg-white/10 transition"
@@ -52,10 +51,9 @@ export default function SubmitAsset() {
       <div className="absolute w-[400px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full bottom-[-100px] right-[-100px]" />
 
       {/* Card */}
-      <div className="relative z-10 w-full max-w-lg backdrop-blur-xl bg-white/5 border border-white/10 p-7 rounded-2xl shadow-2xl">
-
+      <div className="relative z-10 w-full max-w-lg mt-12 sm:mt-16 backdrop-blur-xl bg-white/5 border border-white/10 p-5 sm:p-7 rounded-2xl shadow-2xl">
         {/* STEP PROGRESS BAR */}
-        {step > 0 && <StepProgress step={step} />} 
+        {step > 0 && <StepProgress step={step} />}
 
         {/* STEP 0: Asset Selection */}
         {step === 0 && (
@@ -108,7 +106,6 @@ export default function SubmitAsset() {
           </>
         )}
 
-
         {/* STEP 1: GOLD / SILVER DETAILS */}
         {step === 1 && (assetType === "gold" || assetType === "silver") && (
           <MetalStep1
@@ -138,7 +135,9 @@ export default function SubmitAsset() {
         )}
 
         {/* STEP 7: TOKEN FORMATION */}
-        {step === 7 && <MetalStep7 form={form} setStep={setStep} assetType={assetType} />}
+        {step === 7 && (
+          <MetalStep7 form={form} setStep={setStep} assetType={assetType} />
+        )}
       </div>
     </div>
   );
