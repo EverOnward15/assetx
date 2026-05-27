@@ -19,6 +19,6 @@ export async function POST(req) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    return NextResponse.json({ error: "User already exists" }, { status: 400 });
-  }
+  return NextResponse.json({ error: "User already exists" }, { status: 400 });
+}
 }
