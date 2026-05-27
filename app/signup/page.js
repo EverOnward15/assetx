@@ -3,31 +3,30 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function Login() {
+export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     setLoading(true);
     setError("");
 
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch("/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        router.push("/dashboard");
+        router.push("/");
       } else {
         setError(data.error || "Something went wrong");
       }
@@ -39,7 +38,8 @@ export default function Login() {
   };
 
   return (
-<div className="relative h-screen overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white px-4">
+    <div className="relative min-h-[100dvh] overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white px-4">
+
       {/* Background glow */}
       <div className="absolute w-[500px] h-[500px] bg-blue-600/20 blur-[120px] rounded-full top-[-100px] left-[-100px]" />
       <div className="absolute w-[400px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full bottom-[-100px] right-[-100px]" />
@@ -48,10 +48,10 @@ export default function Login() {
       <div className="relative z-10 w-full max-w-md backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 shadow-2xl">
 
         <h1 className="text-2xl font-semibold mb-2 tracking-tight">
-          Welcome back
+          Create your account
         </h1>
         <p className="text-gray-400 text-sm mb-6">
-          Login to your account to continue
+          Get started with tokenized real estate
         </p>
 
         {/* Error */}
@@ -79,21 +79,21 @@ export default function Login() {
 
         {/* Button */}
         <button
-          onClick={handleLogin}
+          onClick={handleSignup}
           disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 transition p-3 rounded-lg font-medium disabled:opacity-50"
         >
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Creating account..." : "Create Account"}
         </button>
 
         {/* Footer */}
         <div className="mt-6 text-sm text-gray-400 text-center">
-          Don’t have an account?{" "}
+          Already have an account?{" "}
           <span
-            onClick={() => router.push("/signup")}
+            onClick={() => router.push("/")}
             className="text-blue-400 hover:underline cursor-pointer"
           >
-            Sign up
+            Login
           </span>
         </div>
 
