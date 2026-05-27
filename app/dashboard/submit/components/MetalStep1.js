@@ -155,7 +155,7 @@ export default function MetalStep1({
           </div>
         ))}
 
-        <button
+        {/* <button
           type="button"
           onClick={() =>
             setForm({
@@ -166,7 +166,7 @@ export default function MetalStep1({
           className="text-sm text-blue-400 mt-2"
         >
           + Add another HUID
-        </button>
+        </button> */}
       </div>
 
       {/* Continue */}
